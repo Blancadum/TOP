@@ -1,0 +1,14 @@
+/* styles/custom.css */
+@import "tailwindcss";
+
+/* Botón con gradiente personalizado */
+.btn-gradient {
+    background: linear-gradient(90deg, #5B21B6 0%, #EC4899 100%);
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  
