@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const Session = require("../models/session.model");
-const User = require("../models/user");
+const User = require("../models/user.model");
 const createError = require("http-errors");
 
 module.exports.create = async (req, res, next) => {

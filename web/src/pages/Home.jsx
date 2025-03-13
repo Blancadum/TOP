@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "../components/PageLayout";
 import HeroSection from "../components/HeroSection/HeroSection";
 import FAQAccordion from "../components/faq/FAQ";
-import ContactForm from "../components/Formularios/Contacto";
+import ContactForm from "../components/Formularios/ContactForm";
 import ServicesCardsHomeGrid from "../components/Services/ServicesCardsHomeGrid";
 import Separator from "../components/inpage/Separator";
 

@@ -81,7 +81,7 @@ export default function CoachingBariatricoPost() {
                   El coaching bariátrico no solo facilita tu transformación física, sino que también refuerza tu bienestar emocional y mental. Con un acompañamiento adecuado, puedes construir una relación más saludable contigo mismo y con tu entorno.
                 </p>
                 <p className="text-paragraph">
-                  Te lo dice alguien que hubiera agradecido tener este tipo de apoyo psicológico durante su proceso de manga gástrica. Porque los psicólogos también somos humanos, y sabemos lo valioso que es tener a alguien que entienda lo que estás pasando y tenga las herramientas para ayudarte a superarlo.
+                  Te lo dice alguien que hubiera agradecido tener este tipo de apoyo psicológico durante su proceso de manga gástrica o bypass. Porque los psicólogos también somos humanos, y sabemos lo valioso que es tener a alguien que entienda lo que estás pasando y tenga las herramientas para ayudarte a superarlo.
                 </p>
               </>
             }

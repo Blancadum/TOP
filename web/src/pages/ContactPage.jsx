@@ -1,39 +1,61 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async"; // Importa Helmet
-import ContactForm from "../components/Formularios/Contacto"; // Asegúrate de que la ruta es correcta
-import Layout from "../components/PageLayout"; // Asegúrate de que la ruta es correcta
+import { Helmet } from "react-helmet-async"; 
+import ContactForm from "../components/Formularios/ContactForm"; 
+import Layout from "../components/PageLayout"; 
 
 export default function ContactPage() {
+  // Paso 1: Definir el estado del formulario
   const [formData, setFormData] = useState({
-    nombre: "",
+    name: "",
     email: "",
-    mensaje: "",
+    telefono: "",
+    motivoConsulta: "",
   });
 
+  const [error, setError] = useState(null); // Para mensajes de error
+  const [success, setSuccess] = useState(null); // Para mensajes de éxito
+
+  // Paso 2: Manejo de cambios en el formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  // Paso 3: Manejo del envío del formulario
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
+    setError(null); // Resetear errores
+    setSuccess(null); // Resetear éxito
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al enviar el formulario.");
+      }
+
+      setSuccess("Formulario enviado correctamente.");
+    } catch (err) {
+      setError("Error al enviar el formulario.");
+      console.error("Error:", err);
+    }
   };
 
   return (
     <Layout>
-      {/* Metadata SEO usando Helmet */}
+      {/* SEO Metadata usando Helmet */}
       <Helmet>
         <title>Contáctanos - Blanca de Uña Martín</title>
         <meta
           name="description"
           content="Ponte en contacto con Blanca de Uña Martín, psicóloga especializada en terapias online, depresión, ansiedad y más. Estoy aquí para ayudarte."
         />
-        <meta
-          name="keywords"
-          content="psicología online, contacto, ayuda emocional, Blanca de Uña Martín, depresión, ansiedad, terapia psicológica"
-        />
-        <meta name="author" content="Blanca de Uña Martín" />
       </Helmet>
 
       {/* Contenido principal */}
@@ -51,6 +73,8 @@ export default function ContactPage() {
           formData={formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          error={error}
+          success={success}
         />
       </section>
     </Layout>

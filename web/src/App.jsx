@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AboutMe from "./pages/AboutMe";
-import Contact from "./pages/Contact";
+import Contact from "./pages/ContactPage";
 import Blog from "./pages/Blog";
 import Login from "./pages/LoginPage";
 import Register from "./pages/RegisterPage";
@@ -41,7 +41,7 @@ function App() {
       {/* Rutas principales */}
       <Route path="/" element={<Home />} />
       <Route path="/about-me" element={<AboutMe />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contacto" element={<Contact />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

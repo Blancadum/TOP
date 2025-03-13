@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async"; // Importa Helmet
 import Layout from "../components/PageLayout"; // Asegúrate de que es Layout y no PageLayout
-import ContactForm from "../components/Formularios/Contacto";
+import ContactForm from "../components/Formularios/ContactForm";
 
 export default function VideosPage() {
   const videos = [
