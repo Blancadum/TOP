@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "@/components/layout";
+import Layout from "../../components/PageLayout";
 export default function BlogPost({ title, date, content, author, imageSrc, tags }) {
     return (
       <Layout>

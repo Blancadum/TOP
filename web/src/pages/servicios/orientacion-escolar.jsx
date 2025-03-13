@@ -1,5 +1,6 @@
 import React from "react";
 import BlogPost from "../Blog"
+import Layout from "../../components/PageLayout";
 /*import TwoColumns from "../../components/inpage/TwoColumns/TwoColumns";
 import TextBlock from "../../components/inpage/SectionText/TextBlock";
 import HighlightPoints from "../../components/inpage/Highlights/Highlights";

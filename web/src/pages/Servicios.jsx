@@ -1,13 +1,16 @@
 import React from "react";
-import PageLayout from "../components/inpage/PageLayout";
+import Layout from "../components/PageLayout";
 import ServicesCardsGrid from "../components/Services/ServicesCardsGrid";
 import ReservationButton from "../components/CTA-Button/CtaBanner";
+import { Helmet } from "react-helmet-async";
+
 
 export default function Servicios() {
   return (
     <>
+    <Layout>
       {/* Metadata */}
-      
+      <Helmet>
         <title>Servicios de Psicología Online - Blanca de Uña Martín</title>
         <meta
           name="description"
@@ -40,16 +43,16 @@ export default function Servicios() {
           content="https://www.tu-sitio-web.com/images/servicios-psicologia.jpg"
         />
         <link rel="icon" href="/favicon.ico" />
+        </Helmet>
 
       {/* Contenido principal */}
-      <PageLayout>
         <ServicesCardsGrid />
 
         {/* Botón de llamada a la acción */}
         <div className="mt-12 text-center">
           <ReservationButton showTitle={false} />
         </div>
-      </PageLayout>
+      </Layout>
     </>
   );
 }

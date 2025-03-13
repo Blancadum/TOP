@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import ContactForm from "../components/Formularios/Contacto"; // Ruta ajustada para tu estructura
+import { Helmet } from "react-helmet-async"; // Importa Helmet
+import ContactForm from "../components/Formularios/Contacto"; // Asegúrate de que la ruta es correcta
+import Layout from "../components/PageLayout"; // Asegúrate de que la ruta es correcta
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -19,8 +21,9 @@ export default function ContactPage() {
   };
 
   return (
-    <>
-      {/* Metadata SEO */}
+    <Layout>
+      {/* Metadata SEO usando Helmet */}
+      <Helmet>
         <title>Contáctanos - Blanca de Uña Martín</title>
         <meta
           name="description"
@@ -31,48 +34,25 @@ export default function ContactPage() {
           content="psicología online, contacto, ayuda emocional, Blanca de Uña Martín, depresión, ansiedad, terapia psicológica"
         />
         <meta name="author" content="Blanca de Uña Martín" />
+      </Helmet>
 
-        {/* Open Graph */}
-        <meta property="og:title" content="Contáctanos - Blanca de Uña Martín" />
-        <meta
-          property="og:description"
-          content="Ponte en contacto con Blanca de Uña Martín, psicóloga especializada en terapias online, depresión, ansiedad y más."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.tu-sitio-web.com/contacto" />
-        <meta
-          property="og:image"
-          content="https://www.tu-sitio-web.com/images/contacto.jpg"
-        />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contáctanos - Blanca de Uña Martín" />
-        <meta
-          name="twitter:description"
-          content="Ponte en contacto con Blanca de Uña Martín, psicóloga especializada en terapias online, depresión, ansiedad y más."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.tu-sitio-web.com/images/contacto.jpg"
-        />
-
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-
-      {/* Contenido */}
-      <section className="container mx-auto bg-white py-section px-6 md:px-12 lg:px-16">
-        <h1 className="text-h1 text-center">¿Hablamos?</h1>
-        <p className="text-paragraph text-center mt-4">
+      {/* Contenido principal */}
+      <section className="container mx-auto bg-white py-8 px-6 md:px-12 lg:px-16">
+        <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
+          ¿Hablamos?
+        </h1>
+        <p className="text-lg text-center text-gray-600 mb-8">
           Si tienes preguntas o necesitas ayuda, no dudes en ponerte en contacto.
           Estoy aquí para escucharte y trabajar juntos en tu bienestar.
         </p>
+
+        {/* Formulario de contacto */}
         <ContactForm
           formData={formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
       </section>
-    </>
+    </Layout>
   );
 }

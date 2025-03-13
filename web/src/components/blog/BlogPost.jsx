@@ -1,8 +1,7 @@
 import React from "react";
-import PageLayout from "../components/inpage/PageLayout"; // Ajuste de ruta
-import CTABanner from "../components/CTA-Button/CtaBanner"; // Ajuste de ruta
+import CTABanner from "../CTA-Button/CtaBanner";
 
-// Componente para mostrar la imagen del post
+
 function PostImage({ imageSrc, title }) {
   if (!imageSrc) return null;
   return (
@@ -16,7 +15,6 @@ function PostImage({ imageSrc, title }) {
   );
 }
 
-// Componente para mostrar el encabezado del post
 function PostHeader({ title, date, author }) {
   return (
     <header className="mb-6">
@@ -29,7 +27,6 @@ function PostHeader({ title, date, author }) {
   );
 }
 
-// Componente para mostrar el contenido del post
 function PostContent({ content }) {
   return (
     <section className="prose prose-sm md:prose-lg lg:prose-xl max-w-none text-gray-700">
@@ -38,7 +35,6 @@ function PostContent({ content }) {
   );
 }
 
-// Componente para mostrar las etiquetas del post
 function PostTags({ tags }) {
   if (!tags || tags.length === 0) return null;
   return (
@@ -58,7 +54,6 @@ function PostTags({ tags }) {
   );
 }
 
-// Componente principal del post
 export default function BlogPost({ title, date, content, author, imageSrc, tags }) {
   return (
       <article className="max-w-4xl mx-auto px-4 py-8">

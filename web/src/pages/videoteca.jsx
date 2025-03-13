@@ -1,5 +1,7 @@
-import PageLayout from "../components/inpage/PageLayout"; // Ajuste de ruta
-import { useState } from "react";
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async"; // Importa Helmet
+import Layout from "../components/PageLayout"; // Asegúrate de que es Layout y no PageLayout
+import ContactForm from "../components/Formularios/Contacto";
 
 export default function VideosPage() {
   const videos = [
@@ -17,8 +19,9 @@ export default function VideosPage() {
   };
 
   return (
-    <PageLayout>
+    <Layout>
       {/* Metadata para la página */}
+      <Helmet>
         <title>Videos de Apoyo y Consejos | Psicología Online</title>
         <meta
           name="description"
@@ -51,23 +54,25 @@ export default function VideosPage() {
           content="https://www.tu-sitio-web.com/images/videos-psicologia.jpg"
         />
         <link rel="icon" href="/favicon.ico" />
+      </Helmet>
 
       {/* Contenido principal */}
-      <section className="container mx-auto bg-white py-section px-6 md:px-12 lg:px-16">
-        <h1 className="text-h1 text-center mb-6">Videos de Apoyo y Consejos</h1>
-        <p className="text-paragraph text-center mb-8">
+      <section className="container mx-auto bg-white py-8 px-6 md:px-12 lg:px-16">
+        <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
+          Videos de Apoyo y Consejos
+        </h1>
+        <p className="text-lg text-center text-gray-600 mb-8">
           Explora nuestra videoteca con recursos prácticos para mejorar tu bienestar emocional. Encuentra herramientas visuales para superar la ansiedad, depresión y otros desafíos emocionales.
         </p>
 
         {/* Dropdown para seleccionar videos */}
         <div className="mb-8 text-center">
-          <label htmlFor="video-select" className="text-paragraph mr-4">
+          <label htmlFor="video-select" className="text-lg font-semibold text-gray-700 mr-4">
             Selecciona un video:
           </label>
           <select
             id="video-select"
-            className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2
-              focus:ring-brandPurple focus:ring-offset-2"
+            className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-brandPurple focus:ring-offset-2"
             defaultValue=""
             onChange={handleVideoSelect}
           >
@@ -84,7 +89,7 @@ export default function VideosPage() {
 
         {/* Mostrar video seleccionado */}
         {selectedVideo && (
-          <div className="flex justify-center">
+          <div className="flex justify-center mb-8">
             <iframe
               src={selectedVideo.url}
               title={selectedVideo.title}
@@ -96,6 +101,6 @@ export default function VideosPage() {
           </div>
         )}
       </section>
-    </PageLayout>
+    </Layout>
   );
 }

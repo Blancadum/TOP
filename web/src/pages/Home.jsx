@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import PageLayout from "../components/inpage/PageLayout"; // Ajuste de ruta
-import HeroSection from "../components/HeroSection/HeroSection"; // Ajuste de ruta
-import FAQAccordion from "../components/faq/FAQ"; // Ajuste de ruta y capitalización del archivo
-import ContactForm from "../components/Formularios/Contacto"; // Ajuste de ruta
-import ServicesCardsHomeGrid from "../components/Services/ServicesCardsHomeGrid"; // Ajuste de ruta
-import Separator from "../components/inpage/Separator"; // Ajuste de ruta y capitalización del archivo
+import Layout from "../components/PageLayout";
+import HeroSection from "../components/HeroSection/HeroSection";
+import FAQAccordion from "../components/faq/FAQ";
+import ContactForm from "../components/Formularios/Contacto";
+import ServicesCardsHomeGrid from "../components/Services/ServicesCardsHomeGrid";
+import Separator from "../components/inpage/Separator";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -28,7 +28,8 @@ export default function Home() {
   };
 
   return (
-    <PageLayout>
+    <>
+    <Layout>
       {/* Hero Section */}
       <HeroSection />
 
@@ -39,7 +40,7 @@ export default function Home() {
 
       {/* Formulario de Contacto */}
       <section className="section">
-        <h2 className="h2-text">Contáctanos</h2>
+        <h2 className="text-2xl font-bold mb-4">Contáctanos</h2>
         <ContactForm
           formData={formData}
           handleChange={handleChange}
@@ -56,6 +57,7 @@ export default function Home() {
           description="Encuentra aquí las respuestas a las dudas más frecuentes sobre nuestros servicios."
         />
       </section>
-    </PageLayout>
+    </Layout>
+    </>
   );
 }

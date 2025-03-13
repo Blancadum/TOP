@@ -1,10 +1,10 @@
 import React from "react";
-import BlogPost from "@/components/blog/BlogPost"; 
-import TwoColumns from "@/components/inpage/TwoColumns/TwoColumns";
-import TextBlock from "@/components/inpage/SectionText/TextBlock";
-import HighlightPoints from "@/components/inpage/Highlights/Highlights";
-import FAQAccordion from "@/components/faq/faq"; // Componente de Preguntas Frecuentes
-import Layout from "@/components/layout";
+import BlogPost from "../../components/blog/BlogPost"; 
+import TwoColumns from "../../components/inpage/TwoColumns/TwoColumns";
+import TextBlock from "../../components/inpage/SectionText/TextBlock";
+import HighlightPoints from "../../components/inpage/Highlights/Highlights";
+import FAQAccordion from "../../components/faq/FAQ"; 
+import Layout from "../../components/PageLayout";
 
 export default function TerapiaIndividualPost() {
   const points = [

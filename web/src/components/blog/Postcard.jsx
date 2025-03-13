@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Reemplazo de Next.js Link por React Router
+import { Link } from "react-router-dom"; 
 
 export default function PostCard({ title, excerpt, slug, date, tags, image }) {
   return (

@@ -1,5 +1,8 @@
 import React from "react";
-import PostCard from "../components/blog/PostCard"; // Ajustar ruta si es necesario
+import { Helmet } from "react-helmet-async"; // Importa Helmet para SEO
+import PostCard from "../components/blog/PostCard"; // Ajuste de ruta si es necesario
+import Layout from "../components/PageLayout";
+
 export default function Blog() {
   // Ejemplo de datos de posts (podrían venir de una API real)
   const posts = [
@@ -19,40 +22,30 @@ export default function Blog() {
   ];
 
   return (
-<>
-      {/* Metadata */}
-        {/* Título */}
+    <Layout>
+      {/* Metadata con Helmet */}
+      <Helmet>
         <title>Blog de Psicología y Bienestar - Blanca de Uña Martín</title>
-
-        {/* Descripción */}
         <meta
           name="description"
           content="Explora artículos sobre psicología, salud mental y bienestar. Encuentra consejos, reflexiones y guías para mejorar tu calidad de vida."
         />
-
-        {/* Palabras clave */}
         <meta
           name="keywords"
           content="psicología, salud mental, bienestar, depresión, ansiedad, terapia, Blanca de Uña Martín, blog de psicología"
         />
-
-        {/* Autor */}
         <meta name="author" content="Blanca de Uña Martín" />
-
-        {/* Open Graph */}
         <meta property="og:title" content="Blog de Psicología y Bienestar - Blanca de Uña Martín" />
         <meta
           property="og:description"
           content="Explora artículos sobre psicología, salud mental y bienestar. Encuentra consejos, reflexiones y guías para mejorar tu calidad de vida."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.tu-sitio-web.com/blog" />
+        <meta property="og:url" content={window.location.href} />
         <meta
           property="og:image"
           content="https://www.tu-sitio-web.com/images/blog-psicologia.jpg"
         />
-
-        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Blog de Psicología y Bienestar - Blanca de Uña Martín" />
         <meta
@@ -63,14 +56,15 @@ export default function Blog() {
           name="twitter:image"
           content="https://www.tu-sitio-web.com/images/blog-psicologia.jpg"
         />
-
-        {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
+      </Helmet>
 
       {/* Contenido del blog */}
-      <section className="container mx-auto bg-white py-section px-6 md:px-12 lg:px-16">
-        <h1 className="text-h1">Blog de Psicología y Bienestar</h1>
-        <p className="text-paragraph text-center">
+      <section className="container mx-auto bg-white py-8 px-6 md:px-12 lg:px-16">
+        <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
+          Blog de Psicología y Bienestar
+        </h1>
+        <p className="text-lg text-center text-gray-600 mb-8">
           Descubre artículos, consejos y reflexiones sobre cómo mejorar tu salud, afrontar los desafíos del día a día y construir una vida más plena.
         </p>
 
@@ -86,7 +80,6 @@ export default function Blog() {
           ))}
         </div>
       </section>
-      </>
-
+    </Layout>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async"; 
 import RegisterForm from "../components/Formularios/registerForm"; 
 
 export default function RegisterPage() {
@@ -10,7 +11,7 @@ export default function RegisterPage() {
     phone: "",
     dni: "",
     birthdate: "",
-    profilePicture: null, // Para la foto de perfil
+    profilePicture: null, 
   });
 
   const [error, setError] = useState("");
@@ -78,15 +79,30 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <RegisterForm
-        formData={formData}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        handleFileChange={handleFileChange}
-        error={error}
-        loading={loading}
-      />
-    </div>
+    <>
+      {/* SEO Metadata */}
+      <Helmet>
+        <title>Registro - Blanca de Uña Martín</title>
+        <meta
+          name="description"
+          content="Crea tu cuenta para acceder a nuestros servicios de psicología online. Rellena el formulario y empieza tu camino hacia el bienestar."
+        />
+        <meta
+          name="keywords"
+          content="registro, cuenta, psicología online, terapia, bienestar emocional"
+        />
+      </Helmet>
+
+      <div className="flex justify-center items-center min-h-screen bg-gray-100">
+        <RegisterForm
+          formData={formData}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleFileChange={handleFileChange}
+          error={error}
+          loading={loading}
+        />
+      </div>
+    </>
   );
 }

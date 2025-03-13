@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import { obtenerUsuarios } from "../../api/users";
+import usuariosData from "../../../../api/data/users.json"; 
 
 function Home() {
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await obtenerUsuarios();
-      setUsuarios(data || []);
-    };
-
-    fetchData();
+   
+    setUsuarios(usuariosData || []);
   }, []);
 
   return (
