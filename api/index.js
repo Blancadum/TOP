@@ -1,21 +1,30 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const contactRoutes = ("/routes/contactRoutes"); // Importar rutas de contacto
+require("dotenv").config(); // Cargar variables de entorno
 
-// Conectar con la base de datos de MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log(" Conectado a MongoDB"))
-  .catch((err) => console.log(" Error de conexión a MongoDB:", err));
+const app = express();
+
+// Importar rutas
+const contactRoutes = require("./routes/contactRoutes"); // Rutas de contacto corregidas
+const userRoutes = require("./routes/userRoutes"); // Rutas de usuario
 
 // Middlewares
 app.use(express.json());
 app.use(cors());
 
-// Usar las rutas de contacto
-app.use("/api", contactRoutes); 
+// Conectar con la base de datos de MongoDB
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Conectado a MongoDB"))
+  .catch((err) => {
+    console.error("Error de conexión a MongoDB:", err);
+    process.exit(1); // Salir del proceso si hay error
+  });
 
-// Se inicia el servidor
+// Usar las rutas
+app.use("/api/users", userRoutes);
+app.use("/api", contactRoutes);
+
+// Iniciar servidor
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Servidor furulando en puerto ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Servidor funcionando en puerto ${PORT}`));
