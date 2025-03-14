@@ -1,0 +1,62 @@
+[
+    {
+      "author": "Dr. Javier Díaz",
+      "specialty": "Terapia Familiar",
+      "email": "j.diaz@example.com",
+      "postTitle": "Mejorando la Comunicación en Familia",
+      "post": [
+        "La terapia familiar es esencial para trabajar la dinámica interna de los hogares y mejorar la convivencia.",
+        "Un diálogo abierto y respetuoso permite a cada miembro de la familia sentirse escuchado y valorado.",
+        "La clave está en identificar patrones disfuncionales y aprender nuevas formas de interacción.",
+        "Con paciencia y el acompañamiento adecuado, las familias pueden superar conflictos y reforzar sus lazos."
+      ]
+    },
+    {
+      "author": "María López",
+      "specialty": "Terapia Individual",
+      "email": "m.lopez@example.com",
+      "postTitle": "Fortaleciendo la Autoestima",
+      "post": [
+        "La autoestima es la base para enfrentar los retos cotidianos con seguridad y determinación.",
+        "A través de la terapia individual, se pueden descubrir y trabajar creencias limitantes sobre uno mismo.",
+        "Pequeños cambios en los hábitos diarios pueden marcar grandes diferencias en la percepción personal.",
+        "Es un proceso continuo que requiere constancia y autocompasión en cada paso del camino."
+      ]
+    },
+    {
+      "author": "Carlos Herrera",
+      "specialty": "Problemas de Pareja",
+      "email": "c.herrera@example.com",
+      "postTitle": "Revivir la Conexión Emocional",
+      "post": [
+        "Muchas parejas experimentan momentos de desconexión que pueden mejorar con una escucha activa.",
+        "Establecer un espacio seguro para expresar sentimientos sin juzgar ayuda a fortalecer el vínculo.",
+        "La empatía es fundamental para comprender la perspectiva de la otra persona y fomentar el respeto mutuo.",
+        "La terapia de pareja ofrece herramientas para generar acuerdos y recuperar la confianza en la relación."
+      ]
+    },
+    {
+      "author": "Dra. Andrea Martínez",
+      "specialty": "Coaching para Bariátricos",
+      "email": "a.martinez@example.com",
+      "postTitle": "Acompañamiento en el Cambio de Hábitos",
+      "post": [
+        "Tras una operación bariátrica, el seguimiento emocional es tan importante como el nutricional.",
+        "El coaching ayuda a mantener la motivación y a enfrentar los desafíos del nuevo estilo de vida.",
+        "Aprender a gestionar las emociones alrededor de la comida es clave para un progreso sostenible.",
+        "Cada persona tiene su propio ritmo; el éxito radica en la constancia y el apoyo adecuado."
+      ]
+    },
+    {
+      "author": "Lucía García",
+      "specialty": "Terapia Infantojuvenil",
+      "email": "l.garcia@example.com",
+      "postTitle": "Fomentando la Salud Emocional en Niños",
+      "post": [
+        "La infancia es una etapa crucial para desarrollar habilidades de regulación emocional.",
+        "La comunicación cercana y el juego terapéutico permiten al niño expresar sus sentimientos sin miedo.",
+        "Cada menor avanza a su propio ritmo; la paciencia y la empatía son esenciales en el acompañamiento.",
+        "Invertir en la salud mental durante esta etapa es fundamental para construir una vida adulta saludable."
+      ]
+    }
+  ]

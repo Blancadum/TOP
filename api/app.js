@@ -1,25 +1,15 @@
-require("dotenv").config();
-const express = require("express");
-const logger = require("morgan");
-const cors = require("./middlewares/cors.middleware");
+const app = require("./app");  // Importar app.js
+const mongoose = require("mongoose");
+require("dotenv").config(); 
 
-/* DB init */
-require("./config/db.config");
+// Conectar con MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("✅ Conectado a MongoDB"))
+  .catch((err) => {
+    console.error("❌ Error de conexión a MongoDB:", err);
+    process.exit(1);
+  });
 
-const app = express();
-
-/* Middlewares */
-app.use(express.json());
-app.use(logger("dev"));
-app.use(cors);
-
-/* API Routes Configuration */
-const routes = require("./config/routes.config");
-app.use("/api/v1/", routes);
-
-const port = Number(process.env.PORT || 5000);
-
-app.listen(port, () => console.info(`Application running at port ${port} 🚀`));
-
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
+// Iniciar el servidor
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`🚀 Servidor funcionando en el puerto ${PORT}`));

@@ -1,61 +1,68 @@
-const createError = require("http-errors");
-const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
 
-// Crear un nuevo usuario (Registro)
-module.exports.create = async (req, res, next) => {
+module.exports.register = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;
 
-    // Verificar si el usuario ya existe
+    // Validar que los campos no estén vacíos
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: "Todos los campos son obligatorios" });
+    }
+
+    // Comprobar si el usuario ya existe
     const existingUser = await User.findOne({ email });
-    if (existingUser) return next(createError(400, "El correo ya está registrado."));
+    if (existingUser) {
+      return res.status(400).json({ error: "Credenciales inválidas" }); // Mejor respuesta por seguridad
+    }
 
-    // Cifrar contraseña
+    // Encriptar la contraseña antes de guardarla
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crear usuario
-    const user = await User.create({ name, email, password: hashedPassword });
+    // Crear usuario con la contraseña encriptada
+    const user = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
 
-    res.status(201).json({ message: "Usuario registrado con éxito." });
+    res.status(201).json({ message: "Usuario registrado con éxito" });
   } catch (error) {
     next(error);
   }
 };
 
-// Iniciar Sesión (Login)
 module.exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // Buscar usuario por email
+    // Validar que los campos no estén vacíos
+    if (!email || !password) {
+      return res.status(400).json({ error: "Todos los campos son obligatorios" });
+    }
+
     const user = await User.findOne({ email });
-    if (!user) return next(createError(400, "Usuario no encontrado."));
 
-    // Comparar contraseñas
+    if (!user) {
+      return res.status(401).json({ error: "Credenciales inválidas" }); // No especificamos si es el email o la contraseña
+    }
+
+    // Comparar la contraseña ingresada con la almacenada en la base de datos
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return next(createError(400, "Contraseña incorrecta."));
 
-    // Generar token JWT
-    const token = jwt.sign({ id: user._id, role: user.role }, "secreto", { expiresIn: "1h" });
+    if (!isMatch) {
+      return res.status(401).json({ error: "Credenciales inválidas" }); // Misma respuesta por seguridad
+    }
 
-    res.json({ token, role: user.role });
-  } catch (error) {
-    next(error);
-  }
-};
+    // Generar un token JWT
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
-// Obtener perfil del usuario autenticado
-module.exports.profile = (req, res, next) => {
-  res.json(req.user);
-};
-
-// Listar todos los usuarios (opcional)
-module.exports.list = async (req, res, next) => {
-  try {
-    const users = await User.find().select("-password"); // Excluye la contraseña
-    res.json(users);
+    res.status(200).json({ message: "Login exitoso", token });
   } catch (error) {
     next(error);
   }

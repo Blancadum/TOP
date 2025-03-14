@@ -26,33 +26,41 @@ const RegisterForm = () => {
     setError("");
 
     try {
-      // Enviar los datos al backend
-      const response = await fetch("http://localhost:4000/api/register", {  // Asegúrate de que la URL sea la correcta
+      // Enviar los datos al backend con username en lugar de name + surname separados
+      const response = await fetch("http://localhost:4000/api/v1/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          username: `${formData.name} ${formData.surname}`, // 🔹 Unimos nombre y apellido
+          email: formData.email,
+          password: formData.password,
+          phone: formData.phone,
+          dni: formData.dni,
+          birthdate: formData.birthdate,
+        }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
-        alert("Registro exitoso");
-        setFormData({
-          name: "",
-          surname: "",
-          phone: "",
-          dni: "",
-          birthdate: "",
-          email: "",
-          password: "",
-        });
-      } else {
-        setError(data.message || "Hubo un error con el registro.");
+      if (!response.ok) {
+        throw new Error(data.error || "Hubo un error con el registro.");
       }
+
+      alert("Registro exitoso");
+      setFormData({
+        name: "",
+        surname: "",
+        phone: "",
+        dni: "",
+        birthdate: "",
+        email: "",
+        password: "",
+      });
+
     } catch (error) {
-      setError("Error de conexión con el servidor");
+      setError(error.message || "Error de conexión con el servidor");
     }
 
     setLoading(false);
@@ -61,7 +69,7 @@ const RegisterForm = () => {
   return (
     <div className="section">
       <div className="max-w-lg mx-auto border border-gray-300 rounded-lg p-6 bg-white shadow-lg">
-        <h2 className="text-h2 font-bold mb-6 text-brandPurple text-center">Registro</h2>
+        <h2 className="text-3xl font-bold mb-6 text-brandPurple text-center">Registro</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Campo: Nombre */}
           <div>
@@ -171,8 +179,15 @@ const RegisterForm = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              disabled={loading}
-              className="px-6 py-3 bg-brandPurple text-white font-semibold rounded-full"
+              disabled={
+                loading || !formData.name || !formData.surname || !formData.phone || 
+                !formData.dni || !formData.birthdate || !formData.email || !formData.password
+              }
+              className={`px-6 py-3 font-semibold rounded-full transition ${
+                loading
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-brandPurple text-white hover:bg-brandPurple-dark"
+              }`}
             >
               {loading ? "Registrando..." : "Registrar"}
             </button>

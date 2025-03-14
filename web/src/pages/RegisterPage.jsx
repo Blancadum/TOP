@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async"; 
-import RegisterForm from "../components/Formularios/registerForm"; 
+import RegisterForm from "../components/Formularios/RegisterForm"; 
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
