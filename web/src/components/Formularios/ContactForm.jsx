@@ -1,6 +1,8 @@
 import React from "react";
 
 const ContactForm = ({ formData, handleChange, handleSubmit, error, success }) => {
+  const isFormValid = formData.name && formData.email && formData.telefono && formData.motivoConsulta;
+
   return (
     <div className="section">
       <div className="max-w-lg mx-auto border border-gray-300 rounded-lg p-6 bg-white shadow-lg">
@@ -8,7 +10,6 @@ const ContactForm = ({ formData, handleChange, handleSubmit, error, success }) =
           Formulario de Contacto
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Campos del formulario */}
           
           {/* Campo Nombre */}
           <div>
@@ -22,7 +23,9 @@ const ContactForm = ({ formData, handleChange, handleSubmit, error, success }) =
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
+              aria-required="true"
+              aria-label="Nombre"
+              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-brandPurple focus:outline-none"
             />
           </div>
 
@@ -38,7 +41,9 @@ const ContactForm = ({ formData, handleChange, handleSubmit, error, success }) =
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
+              aria-required="true"
+              aria-label="Correo Electrónico"
+              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-brandPurple focus:outline-none"
             />
           </div>
 
@@ -54,7 +59,11 @@ const ContactForm = ({ formData, handleChange, handleSubmit, error, success }) =
               value={formData.telefono}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
+              aria-required="true"
+              aria-label="Teléfono"
+              pattern="[0-9]{9,15}" // Validación básica para números de teléfono
+              title="Debe contener entre 9 y 15 números"
+              className="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-brandPurple focus:outline-none"
             />
           </div>
 
@@ -63,20 +72,29 @@ const ContactForm = ({ formData, handleChange, handleSubmit, error, success }) =
             <label htmlFor="motivoConsulta" className="block text-gray-600 mb-2">
               Motivo de la Consulta
             </label>
-            <input
+            <textarea
               id="motivoConsulta"
-              type="text"
               name="motivoConsulta"
               value={formData.motivoConsulta}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
+              aria-required="true"
+              aria-label="Motivo de la Consulta"
+              className="w-full border border-gray-300 rounded-md px-4 py-2 h-20 resize-none focus:ring-2 focus:ring-brandPurple focus:outline-none"
             />
           </div>
 
           {/* Botón de Envío */}
           <div className="flex justify-center">
-            <button type="submit" className="px-6 py-3 bg-brandPurple text-white font-semibold rounded-full">
+            <button
+              type="submit"
+              disabled={!isFormValid} 
+              className={`px-6 py-3 font-semibold rounded-full transition ${
+                isFormValid
+                  ? "bg-brandPurple text-white hover:bg-brandPurple-dark"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              }`}
+            >
               Enviar
             </button>
           </div>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async"; 
-import ContactForm from "../components/Formularios/ContactForm"; 
-import Layout from "../components/PageLayout"; 
+import { Helmet } from "react-helmet-async";
+import ContactForm from "../components/Formularios/ContactForm";
+import Layout from "../components/PageLayout";
 
 export default function ContactPage() {
-  // Paso 1: Definir el estado del formulario
+  // Estado del formulario
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,17 +15,17 @@ export default function ContactPage() {
   const [error, setError] = useState(null); // Para mensajes de error
   const [success, setSuccess] = useState(null); // Para mensajes de éxito
 
-  // Paso 2: Manejo de cambios en el formulario
+  // Manejo de cambios en el formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Paso 3: Manejo del envío del formulario
+  // Manejo del envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Resetear errores
-    setSuccess(null); // Resetear éxito
+    setError(null); 
+    setSuccess(null); 
 
     try {
       const response = await fetch("http://localhost:5000/api/contact", {
@@ -36,13 +36,24 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
+      const result = await response.json(); // Leer respuesta del backend
+
       if (!response.ok) {
-        throw new Error("Error al enviar el formulario.");
+        throw new Error(result.error || "Error al enviar el formulario.");
       }
 
-      setSuccess("Formulario enviado correctamente.");
+      setSuccess(result.message || "Formulario enviado correctamente.");
+      
+      // Resetear los campos después del envío exitoso
+      setFormData({
+        name: "",
+        email: "",
+        telefono: "",
+        motivoConsulta: "",
+      });
+
     } catch (err) {
-      setError("Error al enviar el formulario.");
+      setError(err.message || "Error al enviar el formulario.");
       console.error("Error:", err);
     }
   };

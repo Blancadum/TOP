@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async"; // Importa Helmet
-import Layout from "../components/PageLayout"; // Asegúrate de que es Layout y no PageLayout
+import { Helmet } from "react-helmet-async";
+import Layout from "../components/PageLayout";
 import ContactForm from "../components/Formularios/ContactForm";
 
 export default function VideosPage() {
   const videos = [
-    { id: 1, url: "https://www.youtube.com/embed/VIDEO_ID_1", title: "Video de Psicología 1" },
-    { id: 2, url: "https://www.youtube.com/embed/VIDEO_ID_2", title: "Video de Psicología 2" },
-    { id: 3, url: "https://www.youtube.com/embed/VIDEO_ID_3", title: "Video de Psicología 3" },
-    { id: 4, url: "https://www.youtube.com/embed/VIDEO_ID_4", title: "Video de Psicología 4" },
+    { id: 1, url: "https://www.youtube.com/watch?v=V6sSQAqJa0I", title: "Aprende a Hacer el Índice Automático" },
+    { id: 2, url: "https://youtu.be/DOkEEBfEHV8?si=6i0qmMRKp3OScLIn", title: "Altas Capacidades y TDAH" },
+    { id: 3, url: "https://www.youtube.com/watch?v=7mrTtncokR8", title: "Tráiler como recurso didáctico" },
+    { id: 4, url: "https://youtu.be/JA79L1XBUcY?si=5z1Z9zNcuozb60Q3", title: "Encuadre psicológico" },
   ];
 
   const [selectedVideo, setSelectedVideo] = useState(null); // Estado para el video seleccionado
 
   const handleVideoSelect = (e) => {
     const videoId = parseInt(e.target.value, 10); // Obtener el ID del video seleccionado
-    setSelectedVideo(videos.find((video) => video.id === videoId)); // Buscar el video en el array
+    setSelectedVideo(videos.find((video) => video.id === videoId)); // Buscar el video
   };
 
   return (
@@ -94,13 +94,13 @@ export default function VideosPage() {
               src={selectedVideo.url}
               title={selectedVideo.title}
               className="w-full max-w-lg aspect-video rounded-md shadow-lg"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
         )}
       </section>
+      <ContactForm />
     </Layout>
   );
 }

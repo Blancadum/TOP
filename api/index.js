@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const contactRoutes = require("./routes/contact.routes"); // Importar rutas de contacto
+const contactRoutes = ("/routes/contactRoutes"); // Importar rutas de contacto
 
 // Conectar con la base de datos de MongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
