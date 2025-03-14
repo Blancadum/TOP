@@ -14,10 +14,10 @@ export default function NavBar({ isOpen }) {
           { to: "/", label: "Home" },
           { to: "/servicios", label: "Servicios" },
           { to: "/tarifas", label: "Tarifas" },
-          { to: "/about-me", label: "Quién soy" },
-          { to: "/Videoteca", label: "Videos" },
-          { to: "/Blog", label: "Blog" },
-          { to: "/Contact", label: "Contacto" },
+          { to: "/aboutme", label: "Quién soy" },
+          { to: "/videoteca", label: "Videos" },
+          { to: "/blog", label: "Blog" },
+          { to: "/contacto", label: "Contacto" },
         ].map((item) => (
           <li key={item.to}>
             <Link

@@ -40,7 +40,7 @@ function App() {
       
       {/* Rutas principales */}
       <Route path="/" element={<Home />} />
-      <Route path="/about-me" element={<AboutMe />} />
+      <Route path="/aboutme" element={<AboutMe />} />
       <Route path="/contacto" element={<Contact />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/login" element={<Login />} />

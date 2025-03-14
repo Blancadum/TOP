@@ -1,6 +1,6 @@
 # 🧠 Plataforma de Psicología - Gestión de Psicólogos y Pacientes
 
-Bienvenido a la plataforma de Psicología, un sistema diseñado para gestionar psicólogos, pacientes y citas en una aplicación moderna utilizando **React, Vite, Tailwind CSS, Node.js, Express y MongoDB**.
+Bienvenido a la TOP, una plataforma de Psicología diseñada para llevar a cabo una Terapia Online Profesional (TOP) optimizando recursos humanos y materiales. Se trata de un ecosistema capaz de competir en las SERPS de Google con el que se pretende aunar esfuerzos de psicólogos y pacientes a la hora de solucionar los problemas. Esta moderna aplicación requiere de la instalación de librerías como **React, Vite, Tailwind CSS, Node.js, Express y MongoDB**. La intención, con todo ello, es crear una web autosuficiente que no necesite de contratación de plugins sino que pueda ser del todo elaborada artesanalmente para alcanzar las funcionalidades que se esperan de cualquier web de empresa o de servicios.
 
 ## 🚀 Descripción del Proyecto
 Nuestra plataforma está diseñada para **digitalizar y optimizar la gestión psicológica**, permitiendo a los profesionales de la salud mental ofrecer una experiencia más organizada y eficiente. 
@@ -11,6 +11,7 @@ Nuestra plataforma está diseñada para **digitalizar y optimizar la gestión ps
 - **Programación y gestión de citas** con notificaciones automáticas.
 - **Perfiles de psicólogos** con disponibilidad y especialidades.
 - **Interfaz intuitiva y responsiva**, optimizada con **React y Tailwind CSS**.
+-**Ver mucho más en el enlace:**, https://1drv.ms/i/c/40d9fed0410413b7/EdN30xDfGjpAsZqyY_4SxhYB5sE5w59ysVUIbOOnYZ-zmw?e=InKiOf
 
 ### **📦 Dependencias Instaladas:**
 
@@ -80,7 +81,7 @@ El frontend se ejecutará en `http://localhost:5173`.
 
 ---
 
-## 📅 **Gestión de Citas**
+## 📅 **Gestión de Citas** en el futuro
 - **Psicólogos** pueden crear, ver y gestionar citas con pacientes.
 - **MongoDB** almacena toda la información de pacientes y sus consultas.
 - **Interfaz de calendario** permite ver citas programadas.
@@ -99,16 +100,6 @@ cd TOP
 cd api
 npm run logs
 ```
-
----
-
-## 🤝 **Contribución**
-Si quieres contribuir a este proyecto:
-1. **Haz un fork** del repositorio.
-2. **Crea una nueva rama** (`git checkout -b feature-nueva`).
-3. **Realiza tus cambios y súbelos** (`git push origin feature-nueva`).
-4. **Haz un Pull Request**.
-
 ---
 
 ## 📜 Licencia
@@ -118,4 +109,3 @@ Este proyecto está bajo la licencia **MIT**. ¡Úsalo y modifícalo libremente!
 
 🚀 **¡Gracias por tu interés en el proyecto!** Cualquier duda, contáctame blancadum@gmail.com o abre un issue en GitHub. 🎉
 Te espero! 
-
