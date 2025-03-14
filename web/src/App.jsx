@@ -29,6 +29,7 @@ import TerapiaFamiliar from "./pages/servicios/terapia-familiar";
 import TerapiaIndividual from "./pages/servicios/terapia-individual";
 import TerapiaInfantil from "./pages/servicios/terapia-infantil";
 import TerapiaOnline from "./pages/servicios/terapia-online";
+import TerapiaPareja from "./pages/servicios/terapia-pareja";
 
 // Importar el Layout
 import Layout from "./components/PageLayout";
@@ -68,6 +69,9 @@ function App() {
       <Route path="/servicios/terapia-individual" element={<TerapiaIndividual />} />
       <Route path="/servicios/terapia-infantil" element={<TerapiaInfantil />} />
       <Route path="/servicios/terapia-online" element={<TerapiaOnline />} />
+      <Route path="/servicios/terapia-pareja" element={<TerapiaPareja />} />
+
+
 
       {/* Ruta para páginas no encontradas */}
       <Route path="*" element={<Layout><NotFound /></Layout>} />

@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async"; // Importa Helmet para SEO
 import BlogPost from "../Blog";
 import Layout from "../../components/PageLayout";
 
-export default function TerapiaFamiliarService() {
+export default function TerapiaFamiliarPost() {
   return (
     <>
       {/* SEO Metadata */}
