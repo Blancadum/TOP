@@ -7,7 +7,7 @@ const usersController = require("../controllers/users.controller");
 const sessionsController = require("../controllers/sessions.controller");
 
 // Importar middleware de autenticación
-const auth = require("../middlewares/session.middleware");
+const auth = require("../middleware/session.middleware");
 
 // Nueva ruta para devolver el JSON de usuarios
 router.get("/users", usersController.list);

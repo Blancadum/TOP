@@ -1,53 +1,85 @@
-const Post = require('../models/Post.model');
+// controllers/postController.js
+const Post = require("../models/postModel");
 
-// Listar todos los posts
-module.exports.list = (req, res, next) => {
-  Post.find()
-    .then(posts => res.json(posts))
-    .catch(next);
+// Crear una nueva publicación
+const createPost = async (req, res) => {
+  try {
+    const { title, content, author, authorImage } = req.body;
+    const newPost = new Post({ title, content, author, authorImage });
+    await newPost.save();
+    res.status(201).json(newPost);
+  } catch (error) {
+    res.status(500).json({ message: "Error creando la publicación", error });
+  }
 };
 
-// Detalle de un post por ID
-module.exports.detail = (req, res, next) => {
-  Post.findById(req.params.id)
-    .then(post => {
-      if (!post) {
-        return res.status(404).json({ message: 'Post no encontrado' });
-      }
-      res.json(post);
-    })
-    .catch(next);
+// Obtener todas las publicaciones
+const getAllPosts = async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: "Error obteniendo las publicaciones", error });
+  }
 };
 
-// Crear un nuevo post
-module.exports.create = (req, res, next) => {
-  Post.create(req.body)
-    .then(post => {
-      return res.status(201).json(post);
-    })
-    .catch(next);
+// Obtener una publicación por ID
+const getPostById = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: "Publicación no encontrada" });
+    }
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(500).json({ message: "Error obteniendo la publicación", error });
+  }
 };
 
-// Actualizar un post existente
-module.exports.update = (req, res, next) => {
-  Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .then(post => {
-      if (!post) {
-        return res.status(404).json({ message: 'Post no encontrado' });
-      }
-      res.json(post);
-    })
-    .catch(next);
+// Actualizar una publicación
+const updatePost = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // Verificar si el usuario es el autor o un administrador
+    if (post.author !== req.user.username && req.user.role !== "admin") {
+      return res.status(403).json({ message: "No tienes permisos para editar esta publicación" });
+    }
+
+    const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedPost) {
+      return res.status(404).json({ message: "Publicación no encontrada" });
+    }
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    res.status(500).json({ message: "Error actualizando la publicación", error });
+  }
 };
 
-// Eliminar un post
-module.exports.delete = (req, res, next) => {
-  Post.findByIdAndDelete(req.params.id)
-    .then(post => {
-      if (!post) {
-        return res.status(404).json({ message: 'Post no encontrado' });
-      }
-      res.status(204).send(); // 204 significa "No Content"
-    })
-    .catch(next);
+// Eliminar una publicación
+const deletePost = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // Verificar si el usuario es el autor o un administrador
+    if (post.author !== req.user.username && req.user.role !== "admin") {
+      return res.status(403).json({ message: "No tienes permisos para eliminar esta publicación" });
+    }
+
+    const deletedPost = await Post.findByIdAndDelete(req.params.id);
+    if (!deletedPost) {
+      return res.status(404).json({ message: "Publicación no encontrada" });
+    }
+    res.status(200).json({ message: "Publicación eliminada" });
+  } catch (error) {
+    res.status(500).json({ message: "Error eliminando la publicación", error });
+  }
+};
+
+module.exports = {
+  createPost,
+  getAllPosts,
+  getPostById,
+  updatePost,
+  deletePost,
 };

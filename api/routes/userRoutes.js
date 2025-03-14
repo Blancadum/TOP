@@ -5,11 +5,13 @@ const { authMiddleware } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 // Rutas públicas
-router.post("/register", register); // ✅ Cambiado "create" por "register"
+/*
+router.post("/register", register); 
 router.post("/login", login);
 router.get("/", list);
 
 // Rutas protegidas (requieren autenticación)
 router.get("/profile", authMiddleware, profile); 
+*/
 
 module.exports = router;

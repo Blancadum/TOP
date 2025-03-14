@@ -11,7 +11,7 @@ export default function RegisterPage() {
     phone: "",
     dni: "",
     birthdate: "",
-    profilePicture: null, 
+    role: "patient",  // Se establece "patient" por defecto
   });
 
   const [error, setError] = useState("");
@@ -26,15 +26,6 @@ export default function RegisterPage() {
     }));
   };
 
-  // Manejo de cambios para la foto de perfil
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      profilePicture: file,
-    }));
-  };
-
   // Manejo del envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,14 +33,12 @@ export default function RegisterPage() {
     setError("");
 
     try {
-      const formDataToSend = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formDataToSend.append(key, formData[key]);
-      });
-
       const response = await fetch("http://localhost:5000/api/register", {
         method: "POST",
-        body: formDataToSend,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
@@ -57,8 +46,6 @@ export default function RegisterPage() {
       }
 
       console.log("Usuario registrado exitosamente.");
-
-      // Limpiar el formulario después del registro
       setFormData({
         name: "",
         surname: "",
@@ -67,7 +54,7 @@ export default function RegisterPage() {
         phone: "",
         dni: "",
         birthdate: "",
-        profilePicture: null,
+        role: "patient", // Restablecer el rol
       });
 
     } catch (error) {
@@ -98,7 +85,6 @@ export default function RegisterPage() {
           formData={formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          handleFileChange={handleFileChange}
           error={error}
           loading={loading}
         />

@@ -1,6 +1,6 @@
 const app = require("./app");  // Importar la instancia de Express
-const mongoose = require("mongoose");
-require("dotenv").config();  // Cargar las variables de entorno
+const mongoose = require("mongoose");  // Conectar con MongoDB
+require("dotenv").config();  // Cargar variables de entorno
 
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGODB_URI)

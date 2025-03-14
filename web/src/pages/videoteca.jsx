@@ -18,6 +18,12 @@ export default function VideosPage() {
     setSelectedVideo(videos.find((video) => video.id === videoId)); // Buscar el video
   };
 
+  // Función para convertir la URL de YouTube al formato embed
+  const convertToEmbedUrl = (url) => {
+    const videoId = url.split('v=')[1]?.split('&')[0];  // Extrae el ID del video
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;  // Devuelve la URL en formato embed
+  };
+
   return (
     <Layout>
       {/* Metadata para la página */}
@@ -91,7 +97,7 @@ export default function VideosPage() {
         {selectedVideo && (
           <div className="flex justify-center mb-8">
             <iframe
-              src={selectedVideo.url}
+              src={convertToEmbedUrl(selectedVideo.url)} // Usamos la función para convertir la URL al formato embed
               title={selectedVideo.title}
               className="w-full max-w-lg aspect-video rounded-md shadow-lg"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
