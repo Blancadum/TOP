@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom"; // Sustituye useRouter y href
+import { useLocation, Link } from "react-router-dom";
 
 export default function CTABanner({
   showTitle = true,
@@ -13,42 +13,41 @@ export default function CTABanner({
   pricingButtonText = "Ver Tarifas",
   pricingButtonLink = "/tarifas",
 }) {
-  const location = useLocation(); // Equivalente a useRouter para obtener la ruta actual
+  const location = useLocation();
   const isPricingPage = location.pathname === "/tarifas";
 
   return (
-    <section className="bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        {showTitle && (
-          <h2 className="text-2xl md:text-3xl font-extrabold text-gray-800">
-            {title}
-          </h2>
+    <section className="w-full md:w-[80%] lg:w-[70%] mx-auto my-12 px-6 py-10 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-3xl shadow-lg border-l-4 border-indigo-100 text-center">
+      {showTitle && (
+        <h2 className="text-xl md:text-2xl font-semibold text-black mb-4">
+          {title}
+        </h2>
+      )}
+
+      {showSubtitle && (
+        <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+
+      <div className="flex justify-center gap-4 flex-wrap">
+        {showContactButton && (
+          <Link
+            to={contactButtonLink}
+            className="inline-block px-6 py-3 bg-indigo-100 text-indigo-700 font-semibold rounded-full shadow-md transition hover:bg-indigo-400 hover:text-white"
+          >
+            {contactButtonText}
+          </Link>
         )}
 
-        {showSubtitle && (
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+        {!isPricingPage && showPricingButton && (
+          <Link
+            to={pricingButtonLink}
+            className="inline-block px-6 py-3 border-2 border-indigo-300 text-indigo-700 font-semibold rounded-full shadow-md transition hover:bg-indigo-400 hover:text-white"
+          >
+            {pricingButtonText}
+          </Link>
         )}
-
-        <div className="mt-6 flex justify-center gap-4 flex-wrap">
-          {showContactButton && (
-            <Link
-              to={contactButtonLink}
-              aria-label="Contacta para más información"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-brandPurple to-pink-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition"
-            >
-              {contactButtonText}
-            </Link>
-          )}
-          {!isPricingPage && showPricingButton && (
-            <Link
-              to={pricingButtonLink}
-              aria-label="Ver tarifas disponibles"
-              className="inline-block px-6 py-3 border-2 border-brandPurple text-brandPurple font-semibold rounded-full shadow-md hover:bg-gradient-to-r hover:from-brandPurple hover:to-pink-500 hover:text-white transition"
-            >
-              {pricingButtonText}
-            </Link>
-          )}
-        </div>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom"; // React Router para navegación interna
-import logo from "../../assets/images/logo.png";
+import logo from "/images/logo.png";
 import Navbar from "../navBar/navBar";
 
 export default function Header() {

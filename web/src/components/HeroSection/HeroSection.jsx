@@ -1,5 +1,5 @@
 import React from "react";
-import terapiaOnline from "../../assets/images/terapiaOnline.png"; // Ajusta según la ubicación de tu archivo
+import terapiaOnline from "/images/terapiaOnline.png"; // Ajusta según la ubicación de tu archivo
 
 export default function HeroSection() {
   return (

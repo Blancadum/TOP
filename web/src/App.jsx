@@ -71,8 +71,6 @@ function App() {
       <Route path="/servicios/terapia-online" element={<TerapiaOnline />} />
       <Route path="/servicios/terapia-pareja" element={<TerapiaPareja />} />
 
-
-
       {/* Ruta para páginas no encontradas */}
       <Route path="*" element={<Layout><NotFound /></Layout>} />
     </Routes>

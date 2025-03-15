@@ -2,36 +2,32 @@ import React from "react";
 
 export default function HighlightPoints({ title, points }) {
   return (
-    <section className="max-w-5xl mx-auto px-4 py-12">
-      {/* Título de la sección */}
+    <section className="w-full md:w-[80%] lg:w-[70%] mx-auto px-4 py-8 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-3xl shadow-lg border-l-4 border-indigo-100">
       {title && (
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">
+        <h2 className="text-xl md:text-xl font-semibold text-black mb-6 text-center">
           {title}
         </h2>
       )}
-
-      {/* Lista de puntos */}
-      <div className="space-y-6">
+      <div className="space-y-4">
         {points.map((point, index) => (
           <div
             key={index}
-            className="flex items-start space-x-4 bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition transform hover:scale-105"
-            role="listitem" // Mejora de accesibilidad
+            className="flex items-start space-x-3 bg-white bg-opacity-90 p-5 rounded-xl shadow-xl transition hover:shadow-sm"
+            role="listitem"
           >
-            {/* Número o ícono */}
             <div
-              className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-brandPurple to-pink-500 text-white flex items-center justify-center font-bold"
-              aria-label={`Punto destacado ${index + 1}`} // Mejora de accesibilidad
+              className="flex-shrink-0 bg-indigo-100 text-indigo-700 rounded-full h-8 w-8 flex items-center justify-center transition hover:bg-indigo-400 hover:text-white"
             >
               {index + 1}
             </div>
 
-            {/* Contenido */}
             <div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+              <h3 className="text-lg font-medium text-gray-900">
                 {point.title}
               </h3>
-              <p className="text-gray-600">{point.description}</p>
+              <p className="text-sm text-gray-800">
+                {point.description}
+              </p>
             </div>
           </div>
         ))}

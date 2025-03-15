@@ -1,49 +1,47 @@
 import React, { useState } from "react";
-import { faqsData } from "../../data/FaqsData";
-  
 
-export default function FAQAccordion({ title }) {
+export default function FAQAccordion({ title, description, faqs }) {
   const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleFaq = (index) => {
+  const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="bg-gray-50 p-4 rounded-lg shadow-lg">
-      {title && <h2 className="text-2xl font-bold text-gray-900 mb-2">{title}</h2>}
+    <section className="w-full md:w-[80%] lg:w-[70%] mx-auto my-12 px-6 py-10 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-3xl shadow-lg border-l-4 border-indigo-100">
+      {title && (
+        <h2 className="text-xl md:text-2xl font-semibold text-black mb-6 text-center">
+          {title}
+        </h2>
+      )}
+
+      {description && (
+        <p className="text-gray-700 mb-6 text-center max-w-2xl mx-auto">
+          {description}
+        </p>
+      )}
 
       <div className="space-y-4">
-        {faqsData.map((faq, index) => (
-          <div
-            key={faq.id} // clave clara, única
-            className="faq-item bg-white border border-gray-200 rounded-md shadow-sm overflow-hidden"
-          >
-            <h3 className="text-lg font-semibold">
-              <button
-                onClick={() => toggleFaq(index)}
-                className="faq-question flex items-center justify-between w-full px-4 py-3 text-left
-                           text-brandPurple font-semibold cursor-pointer focus:outline-none hover:bg-gray-50 transition-all"
-                aria-expanded={openIndex === index}
-              >
-                {faq.question}
-                <span className="text-3xl font-bold text-gray-600">
-                  {openIndex === index ? "−" : "+"}
-                </span>
-              </button>
-            </h3>
+        {faqs && faqs.length > 0 && faqs.map((faq, index) => (
+          <div key={index} className="bg-white bg-opacity-90 p-4 rounded-xl shadow transition hover:shadow-md">
+            <button
+              onClick={() => toggleAccordion(index)}
+              className="flex justify-between items-center w-full text-left text-indigo-700 font-medium transition hover:text-indigo-900"
+            >
+              <span>{faq.question}</span>
+              <span className="text-xl font-bold">
+                {openIndex === index ? "−" : "+"}
+              </span>
+            </button>
 
             {openIndex === index && (
-              <div
-                className="faq-answer px-4 pb-4 text-gray-600 leading-relaxed transition-all duration-300"
-                aria-hidden={openIndex !== index}
-              >
+              <div className="mt-3 text-sm text-gray-800 transition">
                 {faq.answer}
               </div>
             )}
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
