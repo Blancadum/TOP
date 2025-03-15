@@ -5,34 +5,34 @@ const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
-    enum: ["lector", "user", "psychologist"],
-    default: "lector", 
-    required: true
+    enum: ["reader", "patient", "psychologist"],  // Roles: lector, paciente, psicólogo
+    default: "reader", 
+    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-// Middleware para encriptar contraseña
+// Middleware para encriptar la contraseña antes de guardarla
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next(); 
+  if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);  
-  next(); //siguiente middleware
+  next(); // Siguiente middleware
 });
 
 module.exports = mongoose.model("User", userSchema);
