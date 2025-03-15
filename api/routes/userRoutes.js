@@ -1,17 +1,11 @@
 const express = require("express");
-const { register, login, profile, list } = require("../controllers/userController"); // ✅ Corregido
+const { create, login, profile, list } = require("../controllers/userController");
 const { authMiddleware } = require("../middlewares/authMiddleware");
-
 const router = express.Router();
 
-// Rutas públicas
-/*
-router.post("/register", register); 
+router.post("/register", create); 
 router.post("/login", login);
 router.get("/", list);
-
-// Rutas protegidas (requieren autenticación)
-router.get("/profile", authMiddleware, profile); 
-*/
+router.get("/profile", authMiddleware, profile);
 
 module.exports = router;

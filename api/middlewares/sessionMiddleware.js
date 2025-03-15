@@ -1,8 +1,8 @@
-// middlewares/session.middleware.js
 const jwt = require("jsonwebtoken");
 
 module.exports.checkSession = (req, res, next) => {
-  const token = req.header("Authorization");
+  // Obtener el token del encabezado Authorization
+  const token = req.header("Authorization")?.replace("Bearer ", "");
 
   // Si no hay token, devolver error
   if (!token) {
@@ -13,6 +13,7 @@ module.exports.checkSession = (req, res, next) => {
     // Verificar el token utilizando el JWT_SECRET de tu archivo .env
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded; // Guardamos los datos del usuario en req.user
+
     next(); // Pasar al siguiente middleware o ruta
   } catch (error) {
     return res.status(400).json({ error: "Token no válido o ha expirado." });

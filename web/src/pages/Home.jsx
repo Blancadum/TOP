@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";  // Importar Link para las rutas
 import Layout from "../components/PageLayout";
 import HeroSection from "../components/HeroSection/HeroSection";
 import FAQAccordion from "../components/faq/FAQ";
@@ -29,35 +30,51 @@ export default function Home() {
 
   return (
     <>
-    <Layout>
-      {/* Hero Section */}
-      <HeroSection />
+      <Layout>
+        {/* Agregar los botones de Registro y Login */}
+        <section className="flex justify-center space-x-6 py-6">
+          <Link
+            to="/register"
+            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Registro
+          </Link>
+          <Link
+            to="/login"
+            className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+          >
+            Login
+          </Link>
+        </section>
 
-      {/* Servicios destacados */}
-      <section className="section">
-        <ServicesCardsHomeGrid />
-      </section>
+        {/* Hero Section */}
+        <HeroSection />
 
-      {/* Formulario de Contacto */}
-      <section className="section">
-        <h2 className="text-2xl font-bold mb-4">Contáctanos</h2>
-        <ContactForm
-          formData={formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-      </section>
+        {/* Servicios destacados */}
+        <section className="section">
+          <ServicesCardsHomeGrid />
+        </section>
 
-      <Separator />
+        {/* Formulario de Contacto */}
+        <section className="section">
+          <h2 className="text-2xl font-bold mb-4">Contáctanos</h2>
+          <ContactForm
+            formData={formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        </section>
 
-      {/* Preguntas Frecuentes */}
-      <section className="section">
-        <FAQAccordion
-          title="Preguntas Frecuentes"
-          description="Encuentra aquí las respuestas a las dudas más frecuentes sobre nuestros servicios."
-        />
-      </section>
-    </Layout>
+        <Separator />
+
+        {/* Preguntas Frecuentes */}
+        <section className="section">
+          <FAQAccordion
+            title="Preguntas Frecuentes"
+            description="Encuentra aquí las respuestas a las dudas más frecuentes sobre nuestros servicios."
+          />
+        </section>
+      </Layout>
     </>
   );
 }

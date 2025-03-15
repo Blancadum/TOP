@@ -1,94 +1,56 @@
-import React, { useState } from "react";
-import { Helmet } from "react-helmet-async"; 
-import RegisterForm from "../components/Formularios/RegisterForm"; 
+import React from "react";
+import Layout from "../components/PageLayout";
+import RegisterForm from "../components/Formularios/RegisterForm";
+import { Helmet } from "react-helmet-async";
 
 export default function RegisterPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
-    phone: "",
-    dni: "",
-    birthdate: "",
-    role: "patient",  // Se establece "patient" por defecto
-  });
-
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  // Manejo de cambios en el formulario
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  // Manejo del envío del formulario
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      const response = await fetch("http://localhost:5000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al registrar usuario");
-      }
-
-      console.log("Usuario registrado exitosamente.");
-      setFormData({
-        name: "",
-        surname: "",
-        email: "",
-        password: "",
-        phone: "",
-        dni: "",
-        birthdate: "",
-        role: "patient", // Restablecer el rol
-      });
-
-    } catch (error) {
-      setError(error.message);
-      console.error("Error al registrar usuario: ", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
-      {/* SEO Metadata */}
-      <Helmet>
-        <title>Registro - Blanca de Uña Martín</title>
-        <meta
-          name="description"
-          content="Crea tu cuenta para acceder a nuestros servicios de psicología online. Rellena el formulario y empieza tu camino hacia el bienestar."
-        />
-        <meta
-          name="keywords"
-          content="registro, cuenta, psicología online, terapia, bienestar emocional"
-        />
-      </Helmet>
+      <Layout>
+        {/* Metadata */}
+        <Helmet>
+          <title>Registro de Usuario - Blanca de Uña Martín</title>
+          <meta
+            name="description"
+            content="Regístrate en nuestra plataforma para acceder a servicios de psicología online. Conoce más sobre nuestros servicios de terapia individual y de pareja."
+          />
+          <meta
+            name="keywords"
+            content="registro, servicios de psicología, terapia online, psicología, Blanca de Uña Martín, terapia individual, terapia de pareja"
+          />
+          <meta name="author" content="Blanca de Uña Martín" />
+          <meta property="og:title" content="Registro de Usuario - Blanca de Uña Martín" />
+          <meta
+            property="og:description"
+            content="Regístrate para acceder a nuestros servicios de psicología online. Terapias personalizadas y especializadas."
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://www.tu-sitio-web.com/register" />
+          <meta
+            property="og:image"
+            content="https://www.tu-sitio-web.com/images/register.jpg"
+          />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Registro de Usuario - Blanca de Uña Martín" />
+          <meta
+            name="twitter:description"
+            content="Regístrate para acceder a nuestros servicios de psicología online. Terapias personalizadas y especializadas."
+          />
+          <meta
+            name="twitter:image"
+            content="https://www.tu-sitio-web.com/images/register.jpg"
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Helmet>
 
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <RegisterForm
-          formData={formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          error={error}
-          loading={loading}
-        />
-      </div>
+        {/* Contenido principal */}
+        <div className="max-w-lg mx-auto mt-12">
+          <h2 className="text-3xl font-bold mb-6 text-brandPurple text-center">
+            Registro
+          </h2>
+          <RegisterForm />
+        </div>
+      </Layout>
     </>
   );
 }

@@ -3,10 +3,11 @@ const cors = require("cors");  // Importa CORS
 const app = express();
 
 // Habilitar CORS para todas las solicitudes
-app.use(cors());  // Permite solicitudes desde cualquier origen
-
-// O si quieres restringir a un dominio específico (por ejemplo, el frontend):
-// app.use(cors({ origin: "http://localhost:3000" })); // Descomenta y ajusta la URL
+app.use(cors({
+  origin: "http://localhost:3000",  // Permitido solo desde este dominio
+  methods: ["GET", "POST", "PUT", "DELETE"], 
+  allowedHeaders: ["Content-Type", "Authorization"],  
+}));
 
 // Middlewares
 app.use(express.json());  // Para manejar JSON en las peticiones
@@ -23,7 +24,6 @@ app.use("/api/users", userRoutes);  // Ruta para gestionar usuarios
 app.use("/api/contact", contactRoutes);  // Ruta para el contacto
 app.use("/api/posts", postRoutes);  // Ruta para gestionar publicaciones
 
-// Ruta de ejemplo
 app.get("/", (req, res) => {
   res.send("¡Hooliiii!");
 });

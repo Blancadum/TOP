@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 
-// Otras rutas de tu aplicación...
+// Otras rutas de la aplicación...
 
 // Middleware para manejar rutas no encontradas (404)
 app.use((req, res, next) => {
